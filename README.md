@@ -1,6 +1,13 @@
 # Blun.ConfigurationManager
 ConfigurationManager for using App.config and Web.config of different assemblys. It have a Wcf.ChannelFactory wich use the ConfigurationManager.
 
+## Download ##
+You can Download it from https://www.nuget.org/packages/Blun.ConfigurationManager/ or 
+in the Visualstudio -> Package Manager Console 
+```PowerShell
+Install-Package Blun.ConfigurationManager
+```
+
 ## Getting Started ##
 Load the App.config from ClassLibrary 'OtherClassLibrarayWithAppConfig' in the Application 'AppWithWebConfig'.
 ```C#
@@ -22,7 +29,6 @@ namespace AppWithWebConfig
     }
   }
 }
-
 ```
 
 Now create a WCF Channel from Assembly App.config. MS default Example
@@ -50,7 +56,7 @@ using ChannelFactory = Blun.ConfigurationManager.ServiceModel.ChannelFactory;
     service.Close()
   }
   
-   public string GetDataThird(int value)
+  public string GetDataThird(int value)
   {
     // Loads the App.config of the calling Assembly
     var channelFactory = 
