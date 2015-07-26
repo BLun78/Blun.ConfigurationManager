@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65567C76-4871-4F0D-B0E6-B0AA0640EE1C}</ProjectGuid>
+    <ProjectGuid>{1255A4AD-92A8-4E9F-B227-FB6476847346}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blun.ConfigurationManager.Test</RootNamespace>
-    <AssemblyName>Blun.ConfigurationManager.Test</AssemblyName>
+    <RootNamespace>Blun.Test.Common</RootNamespace>
+    <AssemblyName>Blun.Test.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,12 +38,13 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\Blun.ConfigurationManager.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\Blun.ConfigurationManager.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -58,38 +59,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="..\AssemblyInfoGlobal.cs">
+    <Compile Include="..\..\AssemblyInfoGlobal.cs">
       <Link>Properties\AssemblyInfoGlobal.cs</Link>
     </Compile>
-    <Compile Include="TestConfigurationManager.cs" />
+    <Compile Include="IResultAppKey.cs" />
+    <Compile Include="IResultConnectionString.cs" />
+    <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Blun.ConfigurationManager.snk">
+    <None Include="..\..\Blun.ConfigurationManager.snk">
       <Link>Blun.ConfigurationManager.snk</Link>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+    <Content Include="..\..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
-    </CodeAnalysisDictionary>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Blun.ConfigurationManager\Blun.ConfigurationManager.csproj">
-      <Project>{5672281d-9765-4a4e-ad3f-24b81b601828}</Project>
-      <Name>Blun.ConfigurationManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestDataAssembly\BLun.Test.Common\BLun.Test.Common.csproj">
-      <Project>{1255a4ad-92a8-4e9f-b227-fb6476847346}</Project>
-      <Name>BLun.Test.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestDataAssembly\Blun.Test1\Blun.Test1.csproj">
-      <Project>{a21a9f4e-557a-4d58-8709-9914243bf054}</Project>
-      <Name>Blun.Test1</Name>
-    </ProjectReference>
+    </Content>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -111,6 +98,9 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetDir)*.config $(SolutionDir)Blun.ConfigurationManager.Test\bin\$(ConfigurationName)\ /Y /R</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

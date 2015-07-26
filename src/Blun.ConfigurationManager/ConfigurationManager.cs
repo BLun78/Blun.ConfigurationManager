@@ -25,5 +25,10 @@ namespace Blun.ConfigurationManager
         {
             Configuration = exePath == null ? Conf.OpenMachineConfiguration() : Conf.OpenExeConfiguration(exePath);
         }
+
+        public static string GetAssemblyPath(Type assemblyType)
+        {
+            return assemblyType.Assembly.Location;
+        }
     }
 }

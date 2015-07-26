@@ -10,7 +10,7 @@ using ConfigurationManager = Blun.ConfigurationManager.ConfigurationManager;
 namespace Blun.ConfigurationManager.ServiceModel
 {
     public class ChannelFactory<TChannel>
-        :   IDisposable,
+        : IDisposable,
             IChannelFactory<TChannel>,
             IChannelFactory,
             ICommunicationObject
@@ -19,18 +19,18 @@ namespace Blun.ConfigurationManager.ServiceModel
         private readonly IChannelFactory<TChannel> _configurationChannelFactory;
         private readonly string _exePath;
 
-        public static string GetAssemblyPath(Type type)
+        public static string GetAssemblyPath(Type assemblyType)
         {
-            return type.Assembly.Location;
+            return assemblyType.Assembly.Location;
         }
 
         public ChannelFactory(string endpointConfigurationName)
-            : this(endpointConfigurationName, (EndpointAddress)null, (Configuration)null, GetAssemblyPath(typeof(TChannel)))
+            : this(endpointConfigurationName, (EndpointAddress)null, (Configuration)null, ChannelFactory<TChannel>.GetAssemblyPath(typeof(TChannel)))
         {
         }
 
         public ChannelFactory(string endpointConfigurationName, Type assemblyType)
-            : this(endpointConfigurationName, (EndpointAddress)null, (Configuration)null, GetAssemblyPath(assemblyType))
+            : this(endpointConfigurationName, (EndpointAddress)null, (Configuration)null, ChannelFactory<TChannel>.GetAssemblyPath(assemblyType))
         {
         }
 
@@ -39,13 +39,18 @@ namespace Blun.ConfigurationManager.ServiceModel
         {
         }
 
-        public ChannelFactory(string endpointConfigurationName, EndpointAddress remoteAddress, string exePath)
-            : this(endpointConfigurationName, remoteAddress, (Configuration)null, exePath)
+        public ChannelFactory(string endpointConfigurationName, Configuration configuration)
+           : this(endpointConfigurationName, (EndpointAddress)null, configuration, (string)null)
         {
         }
 
         public ChannelFactory(string endpointConfigurationName, EndpointAddress remoteAddress, Type assemblyType)
-            : this(endpointConfigurationName, remoteAddress, (Configuration)null, GetAssemblyPath(assemblyType))
+            : this(endpointConfigurationName, remoteAddress, (Configuration)null, ChannelFactory<TChannel>.GetAssemblyPath(assemblyType))
+        {
+        }
+
+        public ChannelFactory(string endpointConfigurationName, EndpointAddress remoteAddress, string exePath)
+            : this(endpointConfigurationName, remoteAddress, (Configuration)null, exePath)
         {
         }
 
@@ -59,7 +64,7 @@ namespace Blun.ConfigurationManager.ServiceModel
             var config = default(Configuration);
             if (string.IsNullOrWhiteSpace(exePath) && configuration == null)
             {
-                _exePath = GetAssemblyPath(typeof(TChannel));
+                _exePath = ChannelFactory<TChannel>.GetAssemblyPath(typeof(TChannel));
             }
             else
             {
@@ -74,7 +79,7 @@ namespace Blun.ConfigurationManager.ServiceModel
                 config = configuration;
             }
 
-            if (config == default(Configuration)) throw new ArgumentNullException(nameof(configuration) + " or " + nameof(exePath));
+            if (config == default(Configuration)) throw new ArgumentNullException(nameof(configuration));
 
             _configurationChannelFactory = new ConfigurationChannelFactory<TChannel>(endpointConfigurationName,
                                                                                     config,
