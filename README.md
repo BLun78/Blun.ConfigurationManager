@@ -1,8 +1,7 @@
 # Blun.ConfigurationManager
-Blun.ConfigurationManager help for libray configurations app.config, etc.
+ConfigurationManager for using App.config and Web.config of different assemblys. It have a Wcf.ChannelFactory wich use the ConfigurationManager.
 
 ## Getting Started ##
-
 Load the App.config from ClassLibrary 'OtherClassLibrarayWithAppConfig' in the Application 'AppWithWebConfig'.
 ```C#
 using System.Configuration;
@@ -14,8 +13,12 @@ namespace AppWithWebConfig
   {
     public Demo()
     {
-      var config = new ConfigurationManager(ConfigurationManager.GetAssemblyPath(typeof(OtherClassLibrarayWithAppConfig)));
-      KeyValueConfigurationElement element = config.AppSettings.Settings["Getting_Started"];
+      var config = new ConfigurationManager(
+                ConfigurationManager.GetAssemblyPath(
+                                    typeof(OtherClassLibrarayWithAppConfig)));
+                                    
+      KeyValueConfigurationElement element = 
+                config.AppSettings.Settings["Getting_Started"];
     }
   }
 }
@@ -29,7 +32,8 @@ using ChannelFactory = Blun.ConfigurationManager.ServiceModel.ChannelFactory;
   public string GetData(int value)
   {
     // Loads the App.config of the Assembly of the Type 'Contract.IService1'
-    var channelFactory = new ChannelFactory<Contract.IService1>(@"Contract_IService1");
+    var channelFactory = 
+        new ChannelFactory<Contract.IService1>(@"Contract_IService1");
     var service = channelFactory.CreateChannel();
     var result = service.GetData(value);
     service.Close()
@@ -38,7 +42,9 @@ using ChannelFactory = Blun.ConfigurationManager.ServiceModel.ChannelFactory;
   public string GetDataSecond(int value)
   {
     // Loads the App.config of the Assembly of the Type 'Proxy.Service1Client'
-    var channelFactory = new ChannelFactory<Contract.IService1>(@"Proxy_IService1", typeof(Proxy.Service1Client));
+    var channelFactory = 
+        new ChannelFactory<Contract.IService1>(@"Proxy_IService1", 
+                                              typeof(Proxy.Service1Client));
     var service = channelFactory.CreateChannel();
     var result = service.GetData(value);
     service.Close()
@@ -47,7 +53,9 @@ using ChannelFactory = Blun.ConfigurationManager.ServiceModel.ChannelFactory;
    public string GetDataThird(int value)
   {
     // Loads the App.config of the calling Assembly
-    var channelFactory = new ChannelFactory<Contract.IService1>(@"Proxy_IService1", this.GetType());
+    var channelFactory = 
+        new ChannelFactory<Contract.IService1>(@"Proxy_IService1", 
+                                              this.GetType());
     var service = channelFactory.CreateChannel();
     var result = service.GetData(value);
     service.Close()
