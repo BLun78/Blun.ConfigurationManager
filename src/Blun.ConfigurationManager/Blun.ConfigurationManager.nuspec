@@ -8,6 +8,7 @@
     <id>$id$</id>
     <version>$version$</version>
     <authors>$author$</authors>
+    <title>ConfigurationManager over more then one Assembly app.config</title>
     <description>$description$</description>
     <summary>$description$</summary>
     <copyright>$copyright$</copyright>
@@ -17,7 +18,7 @@
     
     <projectUrl>https://github.com/BLun78/Blun.ConfigurationManager</projectUrl>
     <licenseUrl>https://github.com/BLun78/Blun.ConfigurationManager/blob/master/LICENSE</licenseUrl>
-
+    <iconUrl>http://iconmonstr.com/g/gd/makefg.php?i=s2/default/iconmonstr-control-panel-4-icon.png</iconUrl>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="net40" />
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
