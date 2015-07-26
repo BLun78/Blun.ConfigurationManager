@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  For more info on this file format visit http://docs.nuget.org/docs/reference/nuspec-reference.
+-->
+<package>
+  <metadata>
+    
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <copyright>$copyright$</copyright>
+    
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <tags>AppSettings WCF ChannelFactory ConfigurationManager System.Configuration ServiceModel</tags>
+    
+    <projectUrl>https://github.com/BLun78/Blun.ConfigurationManager</projectUrl>
+    <licenseUrl>https://github.com/BLun78/Blun.ConfigurationManager/blob/master/LICENSE</licenseUrl>
+
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.ServiceModel" targetFramework="net40" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
