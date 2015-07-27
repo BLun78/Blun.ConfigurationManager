@@ -52,6 +52,7 @@
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\ChannelFactory.cs" />
+    <Compile Include="ServiceModel\ClientBase.cs" />
     <None Include="ServiceModel\Proxy\IProxyInstanceFactory.cs" />
     <None Include="ServiceModel\Proxy\ProxyInstanceFactory.cs" />
   </ItemGroup>

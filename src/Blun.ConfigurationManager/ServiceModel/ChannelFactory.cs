@@ -10,7 +10,7 @@ using ConfigurationManager = Blun.ConfigurationManager.ConfigurationManager;
 namespace Blun.ConfigurationManager.ServiceModel
 {
     public class ChannelFactory<TChannel>
-        : IDisposable,
+        :   IDisposable,
             IChannelFactory<TChannel>,
             IChannelFactory,
             ICommunicationObject
